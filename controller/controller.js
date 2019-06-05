@@ -8,8 +8,8 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 //Require models
-var Comment = require('../models/Comment.js');
-var Article = require('../models/Article.js');
+var Comment = require('../models/comment.js');
+var Article = require('../models/article.js');
 
 //index
 router.get('/', function (req, res) {
@@ -31,12 +31,12 @@ router.get('/', function (req, res) {
 // A GET request to scrape the Verge website
 router.get('/scrape', function (req, res) {
     // First, we grab the body of the html with request
-    request('http://www.theverge.com/tech', function (error, response, html) {
+    request('https://www.bbc.com/news/world', function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
         var $ = cheerio.load(html);
         var titlesArray = [];
         // Now, we grab every article
-        $('.c-entry-box--compact__title').each(function (i, element) {
+        $('.gs-c-promo-heading').each(function (i, element) {
             // Save an empty result object
             var result = {};
 
